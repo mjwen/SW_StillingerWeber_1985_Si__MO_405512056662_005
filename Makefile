@@ -19,22 +19,37 @@
 #
 
 #
-# Copyright (c) 2012, Regents of the University of Minnesota.  All rights reserved.
+# Copyright (c) 2013--2017, Regents of the University of Minnesota.
+# All rights reserved.
 #
 # Contributors:
 #    Ryan S. Elliott
 #    Ellad B. Tadmor
 #    Valeriu Smirichinski
+#    Mingjian Wen
 #
 
 
 # load all basic KIM make configuration
-include ../Makefile.KIM_Config
+ifeq ($(wildcard ../Makefile.KIM_Config),)
+  ifeq ($(wildcard ../Makefile.KIM_Config_Helper),)
+    KIM_CONFIG_HELPER = kim-api-build-config
+  else
+    include ../Makefile.KIM_Config_Helper
+  endif
+  ifeq ($(shell $(KIM_CONFIG_HELPER) --version 2> /dev/null),)
+    $(error ../Makefile.KIM_Config does not exist and $(KIM_CONFIG_HELPER) utility is not available.  Something is wrong with your KIM API package setup)
+  else
+    MASTER_CONFIG = $(shell $(KIM_CONFIG_HELPER) --master-config)
+  endif
+else
+  MASTER_CONFIG = ../Makefile.KIM_Config
+endif
+include $(MASTER_CONFIG)
 
 # set model driver specific details
-MODEL_DRIVER_NAME := Three_Body_Stillinger_Weber__MD_000000111111_000
-MODEL_NAME := Three_Body_Stillinger_Weber_Si__MO_000000111111_000
-SPECIES_001_NAME    := Si
+MODEL_DRIVER_NAME   := Three_Body_Stillinger_Weber__MD_000000111111_000
+MODEL_NAME          := Three_Body_Stillinger_Weber_Si__MO_000000111111_000
 PARAM_FILE_001_NAME := Three_Body_Stillinger_Weber_Si.params
 
 # APPEND to compiler option flag lists
@@ -42,6 +57,7 @@ PARAM_FILE_001_NAME := Three_Body_Stillinger_Weber_Si.params
 #CFLAGS   +=
 #CXXFLAGS +=
 #LDFLAGS  +=
+#LDLIBS   +=
 
 # load remaining KIM make configuration
 include $(KIM_DIR)/$(builddir)/Makefile.ParameterizedModel

@@ -19,65 +19,44 @@
 #
 
 #
-# Copyright (c) 2012, Regents of the University of Minnesota.  All rights reserved.
+# Copyright (c) 2017, Regents of the University of Minnesota.  All rights reserved.
 #
 # Contributors:
-#    Ryan S. Elliott
-#    Ellad B. Tadmor
-#    Valeriu Smirichinski
-#    Amit Singh
 #    Mingjian Wen
 
 
-This directory (Three_Body_Stillinger_Weber_Si__MO_000000111111_000) contains the Stillinger-Weber potential
-Model based on the KIM Model Driver Three_Body_Stillinger_Weber.  This Model
-implements the Stillinger-Weber potential for Si.
+This directory (Three_Body_Stillinger_Weber_Si__MO_000000111111_000)
+contains the parameterization of the Stillinger-Weber(SW) potential Model for
+Si.
 
 The following files are in this directory:
 
-Three_Body_Stillinger_Weber_Si.params
+Three_Body_Stillinger_Weber_CdTeZnSeHgS.params
 
   first line: 1 (number of species)
 
-  Then the following 9 parameters:
-  A(in ev) B p q sigma(in Angstrom) lambda(in eV) gamma(in Angstorm) costheta_0 cutoff
+  Each data line lists the following 9 parameters for the interaction between
+  two species:
 
-  Any additional lines will be silently ignored.
+  Species1 Species2 A B p q sigma lambda gamma costheta_0 cutoff
 
+  A and lambda are in eV, sigma, gamma, and cutoff are in Angstrom, others are unitless.
 
 LICENSE.CDDL
-  The Common Development and Distribution License (CDDL) Version 1.0 file
+     The Common Development and Distribution License (CDDL) Version 1.0 file
 
 Makefile
-  makefile to compile and build the Model based on the specified KIM Model Driver
+    makefile to compile and build the Model based on the specified KIM Model
+    Driver
 
 README
-  This file
+    This file
 
 References:
 
-1. F. H. Stillinger and T. A. Weber, "Computer simulation of local order in condensed phases of silicon", Phys. Rev. B, vol. 31, 5262-5271, 1985
+1. F. H. Stillinger and T. A. Weber, "Computer simulation of local order in
+  condensed phases of silicon", Phys. Rev. B, vol. 31, 5262-5271, 1985
 
-2. Ellad B. Tadmor and Ronald E. Miller, Modeling Materials: Continuum, Atomistic and Multiscale Techniques, Cambridge University Press, 2011
-
-
-
-###############################################################################
-The functional form of the SW potential is rewritten as:
-
-  E = sum_{i,j>i} phi_2(rij) + sum_{i, j!=i, k>j} phi_3(rij, rik, theta)
-
-  phi_2(rij)           = Aij*(Bij(rij/sigma_ij)^(-p) - (rij/sigma_ij)^(-q))
-                         * exp(sigma_ij/(rij - rcutij))
-
-  phi_3(rij,rik,theta) = lambda_ijk(cos[theta] - cos[theta0])^2
-                         *  exp(gamma_ij/(rij - rcutij) + gamma_ik/(rik - rcutik))
-
-Compared to the standard SW potential, the following redefinitions have been made:
-  A      := A*epsilon
-  lambda := lambda*epsilon
-  gamma  := gamma*sigma
-  rcut   := a*sigma
-
-
+2. Ellad B. Tadmor and Ronald E. Miller, Modeling Materials: Continuum, Atomistic
+  and Multiscale Techniques, Cambridge University Press, 2011
 

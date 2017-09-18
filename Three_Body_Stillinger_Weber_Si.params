@@ -1,22 +1,18 @@
 1
 
- 15.2848479197914     0.6022245584     4     0     2.0951000000    45.5322000000     2.5141200000  -0.3333333333333333   3.7711800000  
+Si Si  15.2848479197914  0.6022245584  4  0  2.0951  45.5322  2.51412  -0.3333333333333333  3.77118
 
 
 #
-#   First line: number of species
+# First line, number of species
 #
-#   Then the following 9 parameters:
-#   A(in ev) B p q sigma(in Angstrom) lambda(in eV) gamma(in Angstrom) costheta_0 cutoff
+# Each data line lists the following 9 parameters for the interaction between
+# two species:
 #
-#   Note that the above parameters are not the standard Stillinger-Weber potential 
-#   parameters. Four of them are redefined according to:
+# Species1 Species2 A B p q sigma lambda gamma costheta_0 cutoff
 #
-#   A      := A*epsilon
-#   lambda := lambda*epsilon
-#   gamma  := gamma*sigma
-#   cutoff := a*sigma
+# A and lambda are in eV, sigma, gamma, and cutoff are in Angstrom, others are unitless.
 #
-#   where the left-hand side are the parameters used here, and the right-hand side are 
-#   the standard Stillinger-Weber potential parameters. 
 #
+
+
