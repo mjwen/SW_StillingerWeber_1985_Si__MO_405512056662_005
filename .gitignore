@@ -1,2 +1,3 @@
-LICENSE.CDDL
-kimspec.edn
+*.o
+*.so
+*.a
