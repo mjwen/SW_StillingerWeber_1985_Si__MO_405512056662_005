@@ -23,29 +23,34 @@
 # All rights reserved.
 #
 # Contributors:
-#    Mingjian Wen
+#    Richard Berger
+#    Christoph Junghans
+#    Ryan S. Elliott
+#
+
+#
+# Release: This file is part of the kim-api.git repository.
 #
 
 
-# load all basic KIM make configuration
-KIM_API_BUILD_CONFIG = kim-api-v2-build-config
-ifeq ($(shell $(KIM_API_BUILD_CONFIG) --version 2> /dev/null),)
-  $(error $(KIM_API_BUILD_CONFIG) utility is not available.  Something is wrong with your KIM API package setup)
-endif
-include $(shell $(KIM_API_BUILD_CONFIG) --master-config)
+#
+# Requied preamble
+#
+
+cmake_minimum_required(VERSION 3.4)
+
+list(APPEND CMAKE_MODULE_PATH $ENV{KIM_API_V2_CMAKE_MODULES_DIR})
+find_package(KIM-API-V2 2.0 REQUIRED)
+if(NOT TARGET kim-api)
+  project("${KIM_API_PROJECT_NAME}" VERSION "${KIM_API_VERSION}"
+    LANGUAGES CXX C Fortran)
+endif()
+
+# End preamble
 
 
-# set model driver specific details
-MODEL_DRIVER_NAME   := Three_Body_Stillinger_Weber__MD_335816936951_003
-MODEL_NAME          := Three_Body_Stillinger_Weber_Si__MO_405512056662_004
-PARAM_FILE_1_NAME   := Three_Body_Stillinger_Weber_Si.params
-
-# APPEND to compiler option flag lists
-#FFLAGS   +=
-#CFLAGS   +=
-#CXXFLAGS +=
-#LDFLAGS  +=
-#LDLIBS   +=
-
-# load remaining KIM make configuration
-include $(KIM_DIR)/$(builddir)/Makefile.ParameterizedModel
+add_kim_api_model_library(
+  NAME            "Three_Body_Stillinger_Weber_Si__MO_405512056662_004"
+  DRIVER_NAME     "Three_Body_Stillinger_Weber__MD_335816936951_003"
+  PARAMETER_FILES "Three_Body_Stillinger_Weber_Si.params"
+  )
