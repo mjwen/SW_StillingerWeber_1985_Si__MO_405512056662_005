@@ -32,7 +32,7 @@ the parameterization of the Stillinger-Weber (SW) potential Model for Si.
 
 The following files are in this directory:
 
-Three_Body_Stillinger_Weber_CdTeZnSeHgS.params
+Three_Body_Stillinger_Weber_Si.params
   Parameter file.
 
 LICENSE.CDDL
