@@ -23,18 +23,12 @@
 # All rights reserved.
 #
 # Contributors:
-#    Richard Berger
-#    Christoph Junghans
-#    Ryan S. Elliott
-#
-
-#
-# Release: This file is part of the kim-api.git repository.
+#    Mingjian Wen
 #
 
 
 #
-# Requied preamble
+# Required preamble
 #
 
 cmake_minimum_required(VERSION 3.4)
@@ -51,7 +45,7 @@ endif()
 
 
 add_kim_api_model_library(
-  NAME            "Three_Body_Stillinger_Weber_Si__MO_405512056662_004"
-  DRIVER_NAME     "Three_Body_Stillinger_Weber__MD_335816936951_003"
-  PARAMETER_FILES "Three_Body_Stillinger_Weber_Si.params"
+  NAME            "SW_StillingerWeber_1985_Si__MO_405512056662_005"
+  DRIVER_NAME     "SW__MD_335816936951_004"
+  PARAMETER_FILES "StillingerWeber_1985_Si.params"
   )
